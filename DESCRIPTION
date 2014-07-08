@@ -1,0 +1,10 @@
+Package: dsStats
+Maintainer: <datashield@obiba.org>
+Author: <datashield@obiba.org>
+Version: 3.0.0
+License: GPL-3
+Title: DataSHIELD statistical functions for client
+Description: DataSHIELD statistical functions for client
+Depends:
+    opal,
+    dsBaseClient
