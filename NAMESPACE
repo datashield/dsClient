@@ -1,0 +1,4 @@
+export(ds.contourPlot)
+export(ds.densityGrid)
+export(ds.heatmapPlot)
+export(ds.histogram)
