@@ -1,4 +1,4 @@
 dsStatsClient
 =============
 
-DataSHIELD statistical functions for client
+DataSHIELD client site statistical functions
