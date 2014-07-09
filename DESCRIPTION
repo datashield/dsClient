@@ -7,4 +7,4 @@ Title: DataSHIELD graphic functions (client)
 Description: Package contains functions to plot graphs.
 Depends:
     opal,
-    dsBaseClient
+    dsbaseclient
