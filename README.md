@@ -1,4 +1,4 @@
 dsGraphicsClient
 ================
 
-DataSHIELD graphic functions for client
+DataSHIELD client site functions for graphics
