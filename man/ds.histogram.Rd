@@ -1,6 +1,6 @@
 \name{ds.histogram}
 \alias{ds.histogram}
-\title{Plots a histogram}
+\title{Generates a histogram plot}
 \usage{
 ds.histogram(x = NULL, type = "combine", datasources = NULL)
 }

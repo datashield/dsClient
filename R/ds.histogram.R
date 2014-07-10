@@ -1,5 +1,5 @@
 #' 
-#' @title Plots a histogram
+#' @title Generates a histogram plot
 #' @description This function plots a histogram without outliers.
 #' @details It calls a datashield server side function that produces the
 #' histogram objects to plot. The objects to plot do not contain bins with
