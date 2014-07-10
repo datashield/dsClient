@@ -1,6 +1,6 @@
 \name{ds.tTest}
 \alias{ds.tTest}
-\title{Runs a student's t-test on horizontally partitioned data}
+\title{Runs a student's t-test}
 \usage{
 ds.tTest(x = NULL, y = NULL, type = "combine",
   alternative = "two.sided", mu = 0, paired = FALSE, var.equal = FALSE,

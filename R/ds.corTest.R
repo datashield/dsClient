@@ -1,5 +1,5 @@
 #' 
-#' @title Test for correlation between paired samples
+#' @title Tests for correlation between paired samples
 #' @description This is similar to the R base function 'cor.test'.
 #' @details Runs a two sided pearson test with a 0.95 confidence level.
 #' @param datasources a list of opal object(s) obtained after login in to opal servers;

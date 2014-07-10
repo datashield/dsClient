@@ -1,5 +1,5 @@
 #' 
-#' @title Runs a student's t-test on horizontally partitioned data
+#' @title Runs a student's t-test
 #' @description Performs one and two sample t-tests on vectors of data.
 #' @details Summary statistics are obtained from each of the data sets that are located on the 
 #' distinct computers/servers. And then grand means and variances are calculated. Those are used 

@@ -1,6 +1,6 @@
 \name{ds.var}
 \alias{ds.var}
-\title{Computes the variance of a given vector (for several studies separately or combined)}
+\title{Computes the variance of a given vector}
 \usage{
 ds.var(x = NULL, type = "combine", datasources = NULL)
 }

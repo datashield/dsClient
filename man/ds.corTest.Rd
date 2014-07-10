@@ -1,6 +1,6 @@
 \name{ds.corTest}
 \alias{ds.corTest}
-\title{Test for correlation between paired samples}
+\title{Tests for correlation between paired samples}
 \usage{
 ds.corTest(x = NULL, y = NULL, datasources = NULL)
 }

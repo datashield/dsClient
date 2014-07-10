@@ -1,5 +1,5 @@
 #' 
-#' @title Computes the variance of a given vector (for several studies separately or combined)
+#' @title Computes the variance of a given vector
 #' @description This function is similar to the R function \code{var}.
 #' @details It is a wrapper for the server side function
 #' @param x a character, the name of a numerical vector.
