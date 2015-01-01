@@ -1,7 +1,7 @@
 Package: dsStatsClient
 Maintainer: <datashield@obiba.org>
 Author: <datashield@obiba.org>
-Version: 3.0.0
+Version: 3.0.1
 License: GPL-3
 Title: DataSHIELD client site stattistical functions
 Description: DataSHIELD client site stattistical functions
