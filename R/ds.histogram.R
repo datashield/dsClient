@@ -129,13 +129,13 @@ ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
       numc <- 2
       par(mfrow=c(numr,numc))
       for(i in 1:ll){
-        warning(names(datasources)[i], ": ", invalidcells[[i]], " invalid categories", immediate.=TRUE, call.=FALSE)
+        warning(names(datasources)[i], ": ", invalidcells[[i]], " invalid cells", immediate.=TRUE, call.=FALSE)
         plot(hist.objs[[i]], xlab=varname, main=paste("Histogram of ", names(datasources)[i], sep=""))
       }
       return(hist.objs)
     }else{
       par(mfrow=c(1,1))
-      warning(names(datasources)[1], ": ", invalidcells[[1]], " invalid categories", immediate.=TRUE, call.=FALSE)
+      warning(names(datasources)[1], ": ", invalidcells[[1]], " invalid cells", immediate.=TRUE, call.=FALSE)
       plot(hist.objs[[1]], xlab=varname, main=paste("Histogram of ", names(datasources)[1], sep=""))
       return(hist.objs[[1]])
     }
