@@ -46,18 +46,19 @@ ds.tTest(x = NULL, y = NULL, type = "combine",
 }
 \value{
 a list containing the following elements: \code{statistic}
-the value of the t-statistic \code{parameter} the degrees
-of freedom for the t-statistic \code{p.value} p.value the
-p-value for the test \code{conf.int} a confidence interval
+the value of the t-statistic. \code{parameter} the degrees
+of freedom for the t-statistic. \code{p.value} p.value the
+p-value for the test. \code{conf.int} a confidence interval
 for the mean appropriate to the specified alternative
-hypothesis \code{estimate} the estimated mean or difference
-in means depending on whether it was a one-sample test or a
-two-sample test \code{null.value} the specified
-hypothesized value of the mean or mean difference depending
-on whether it was a one-sample test or a two-sample test
-\code{alternative} a character string describing the
-alternative hypothesis \code{method} a character string
-indicating what type of t-test was performed
+hypothesis. \code{estimate} the estimated mean or
+difference in means depending on whether it was a
+one-sample test or a two-sample test. \code{null.value} the
+specified hypothesized value of the mean or mean difference
+depending on whether it was a one-sample test or a
+two-sample test. \code{alternative} a character string
+describing the alternative hypothesis \code{method} a
+character string indicating what type of t-test was
+performed
 }
 \description{
 Performs one and two sample t-tests on vectors of data.
@@ -73,45 +74,45 @@ used for performing t-test.
 \examples{
 {
 
-# load that contains the login details
-data(logindata)
+  # load that contains the login details
+  data(logindata)
 
-# login and assign specific variable(s)
-myvar <- list("LAB_HDL", "LAB_TSC")
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # login and assign specific variable(s)
+  myvar <- list("LAB_HDL", "LAB_TSC")
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# Example 1: Run a t.test of the pooled data for the variables 'LAB_HDL' and 'LAB_TSC' - default
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC')
+  # Example 1: Run a t.test of the pooled data for the variables 'LAB_HDL' and 'LAB_TSC' - default
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC')
 
-# Example 2: Run a t.test for each study separately for the same variables as above
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', type='split')
+  # Example 2: Run a t.test for each study separately for the same variables as above
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', type='split')
 
-# Example 3: Run a paired t.test of the pooled data
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE)
+  # Example 3: Run a paired t.test of the pooled data
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE)
 
-# Example 4: Run a paired t.test for each study separately
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE, type='split')
+  # Example 4: Run a paired t.test for each study separately
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE, type='split')
 
-# Example 5: Run a t.test of the pooled data with different alternatives
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='greater')
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='less')
+  # Example 5: Run a t.test of the pooled data with different alternatives
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='greater')
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='less')
 
-# Example 6: Run a t.test of the pooled data with mu different from zero
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', mu=-4)
+  # Example 6: Run a t.test of the pooled data with mu different from zero
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', mu=-4)
 
-# Example 7: Run a t.test of the pooled data assuming that variances of variables are equal
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', var.equal=TRUE)
+  # Example 7: Run a t.test of the pooled data assuming that variances of variables are equal
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', var.equal=TRUE)
 
-# Example 8: Run a t.test of the pooled data with 90\% confidence interval
-ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', conf.level=0.90)
+  # Example 8: Run a t.test of the pooled data with 90\% confidence interval
+  ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', conf.level=0.90)
 
-# Example 9: Run a one-sample t.test of the pooled data
-ds.tTest(x='D$LAB_HDL')
-# the below example should not work, paired t.test is not possible if the 'y' variable is missing
-# ds.tTest(x='D$LAB_HDL', paired=TRUE)
+  # Example 9: Run a one-sample t.test of the pooled data
+  ds.tTest(x='D$LAB_HDL')
+  # the below example should not work, paired t.test is not possible if the 'y' variable is missing
+  # ds.tTest(x='D$LAB_HDL', paired=TRUE)
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }

@@ -19,50 +19,36 @@
 #' @export
 #' @examples {
 #' 
-#' # load that contains the login details
-#' data(logindata)
+#'   # load that contains the login details
+#'   data(logindata)
 #' 
-#' # login and assign specific variable(s)
-#' # (by default the assigned dataset is a dataframe named 'D')
-#' myvar <- list('LAB_HDL', 'LAB_TSC', 'GENDER')
-#' opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+#'   # login and assign specific variable(s)
+#'   # (by default the assigned dataset is a dataframe named 'D')
+#'   myvar <- list('LAB_HDL', 'LAB_TSC', 'GENDER')
+#'   opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
-#' # Example 1: generate the covariance matrix for the assigned dataset 'D' 
-#' # which contains 4 vectors (2 continuous and 1 categorical)
-#' ds.cov(x='D')
+#'   # Example 1: generate the covariance matrix for the assigned dataset 'D' 
+#'   # which contains 4 vectors (2 continuous and 1 categorical)
+#'   ds.cov(x='D')
 #' 
-#' # Example 2: calculate the covariance between two vectors 
-#' # (first assign the vectors from 'D')
-#' ds.assign(newobj='labhdl', toAssign='D$LAB_HDL')
-#' ds.assign(newobj='labtsc', toAssign='D$LAB_TSC')
-#' ds.assign(newobj='gender', toAssign='D$GENDER')
-#' ds.cov(x='labhdl', y='labtsc')
-#' ds.cov(x='labhdl', y='gender')
+#'   # Example 2: calculate the covariance between two vectors 
+#'   # (first assign the vectors from 'D')
+#'   ds.assign(newobj='labhdl', toAssign='D$LAB_HDL')
+#'   ds.assign(newobj='labtsc', toAssign='D$LAB_TSC')
+#'   ds.assign(newobj='gender', toAssign='D$GENDER')
+#'   ds.cov(x='labhdl', y='labtsc')
+#'   ds.cov(x='labhdl', y='gender')
 #' 
-#' # clear the Datashield R sessions and logout
-#' datashield.logout(opals)
+#'   # clear the Datashield R sessions and logout
+#'   datashield.logout(opals)
 #' 
 #' }
 #' 
 ds.cov = function(x=NULL, y=NULL, naAction='pairwise.complete.obs', datasources=NULL){
   
-  # if no opal login details were provided look for 'opal' objects in the environment
+  # if no opal login details are provided look for 'opal' objects in the environment
   if(is.null(datasources)){
-    findLogin <- getOpals()
-    if(findLogin$flag == 1){
-      datasources <- findLogin$opals
-    }else{
-      if(findLogin$flag == 0){
-        stop(" Are yout logged in to any server? Please provide a valid opal login object! ", call.=FALSE)
-      }else{
-        message(paste0("More than one list of opal login object were found: '", paste(findLogin$opals,collapse="', '"), "'!"))
-        userInput <- readline("Please enter the name of the login object you want to use: ")
-        datasources <- eval(parse(text=userInput))
-        if(class(datasources[[1]]) != 'opal'){
-          stop("End of process: you failed to enter a valid login object", call.=FALSE)
-        }
-      }
-    }
+    datasources <- findLoginObjects()
   }
   
   if(is.null(x)){
@@ -76,9 +62,7 @@ ds.cov = function(x=NULL, y=NULL, naAction='pairwise.complete.obs', datasources=
   
   if(typ=='numeric' | typ=='integer' | typ=='factor'){
     if(is.null(y)){
-      message(" ALERT!")
-      message(" y is set to NULL whilst x is a numeric vector, please provide a second vector")
-      stop(" End of process!", call.=FALSE)
+      stop("If x is a numeric vector, y must be a numeric vector!", call.=FALSE)
     }else{
       defined2 <- isDefined(datasources, y)
       typ2 <- checkClass(datasources, y)
@@ -87,7 +71,7 @@ ds.cov = function(x=NULL, y=NULL, naAction='pairwise.complete.obs', datasources=
   
   if(typ=='matrix' | typ=='data.frame' & !(is.null(y))){
     y <- NULL
-    warning(" x is a matrix or a dataframe; y will be ignored and a covariance matrix computed for x!")
+    warning("x is a matrix or a dataframe; y will be ignored and a covariance matrix computed for x!")
   }
   
   # name of the studies to be used in the output

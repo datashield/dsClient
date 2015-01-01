@@ -28,19 +28,19 @@ Runs a two sided pearson test with a 0.95 confidence level.
 \examples{
 {
 
-# load that contains the login details
-data(logindata)
+  # load that contains the login details
+  data(logindata)
 
-# login and assign specific variable(s)
-# (by default the assigned dataset is a dataframe named 'D')
-myvar <- list('LAB_TSC', 'LAB_HDL')
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # login and assign specific variable(s)
+  # (by default the assigned dataset is a dataframe named 'D')
+  myvar <- list('LAB_TSC', 'LAB_HDL')
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# test for correlation between the variables 'LAB_TSC' and 'LAB_HDL'
-ds.corTest(x='D$LAB_TSC', y='D$LAB_HDL')
+  # test for correlation between the variables 'LAB_TSC' and 'LAB_HDL'
+  ds.corTest(x='D$LAB_TSC', y='D$LAB_HDL')
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }

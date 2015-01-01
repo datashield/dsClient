@@ -43,28 +43,28 @@ calculations.
 \examples{
 {
 
-# load that contains the login details
-data(logindata)
+  # load that contains the login details
+  data(logindata)
 
-# login and assign specific variable(s)
-# (by default the assigned dataset is a dataframe named 'D')
-myvar <- list('LAB_HDL', 'LAB_TSC', 'GENDER')
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # login and assign specific variable(s)
+  # (by default the assigned dataset is a dataframe named 'D')
+  myvar <- list('LAB_HDL', 'LAB_TSC', 'GENDER')
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# Example 1: generate the covariance matrix for the assigned dataset 'D'
-# which contains 4 vectors (2 continuous and 1 categorical)
-ds.cov(x='D')
+  # Example 1: generate the covariance matrix for the assigned dataset 'D'
+  # which contains 4 vectors (2 continuous and 1 categorical)
+  ds.cov(x='D')
 
-# Example 2: calculate the covariance between two vectors
-# (first assign the vectors from 'D')
-ds.assign(newobj='labhdl', toAssign='D$LAB_HDL')
-ds.assign(newobj='labtsc', toAssign='D$LAB_TSC')
-ds.assign(newobj='gender', toAssign='D$GENDER')
-ds.cov(x='labhdl', y='labtsc')
-ds.cov(x='labhdl', y='gender')
+  # Example 2: calculate the covariance between two vectors
+  # (first assign the vectors from 'D')
+  ds.assign(newobj='labhdl', toAssign='D$LAB_HDL')
+  ds.assign(newobj='labtsc', toAssign='D$LAB_TSC')
+  ds.assign(newobj='gender', toAssign='D$GENDER')
+  ds.cov(x='labhdl', y='labtsc')
+  ds.cov(x='labhdl', y='gender')
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }
