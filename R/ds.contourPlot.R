@@ -24,51 +24,37 @@
 #' @export
 #' @examples {
 #' 
-#' # load the file that contains the login details
-#' data(logindata)
+#'   # load the file that contains the login details
+#'   data(logindata)
 #' 
-#' # login and assign specific variables(s)
-#' # (by default the assigned dataset is a dataframe named 'D')
-#' myvar <- list("LAB_TSC","LAB_HDL")
-#' opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+#'   # login and assign specific variables(s)
+#'   # (by default the assigned dataset is a dataframe named 'D')
+#'   myvar <- list("LAB_TSC","LAB_HDL")
+#'   opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
-#' # Example 1: generate a contour plot of the pooled data (default)
-#' ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL')
-#' # now produce the same plot but zoom in
-#' ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
+#'   # Example 1: generate a contour plot of the pooled data (default)
+#'   ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL')
+#'   # now produce the same plot but zoom in
+#'   ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
 #' 
-#' # Example 2: generate a contour plot where each study is plotted seaparately
-#' ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
-#' # now produce the same plots but zoom in
-#' ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
+#'   # Example 2: generate a contour plot where each study is plotted seaparately
+#'   ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
+#'   # now produce the same plots but zoom in
+#'   ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
 #' 
-#' # Example 3: generate a contour plot with a less dense grid (default numints is 20)
-#' ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
+#'   # Example 3: generate a contour plot with a less dense grid (default numints is 20)
+#'   ds.contourPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
 #' 
-#' # clear the Datashield R sessions and logout
-#' datashield.logout(opals)
+#'   # clear the Datashield R sessions and logout
+#'   datashield.logout(opals)
 #' 
 #' }
 #'
 ds.contourPlot <- function(x=NULL, y=NULL, type='combine', show='all', numints=20, datasources=NULL){
   
-  # if no opal login details were provided look for 'opal' objects in the environment
+  # if no opal login details are provided look for 'opal' objects in the environment
   if(is.null(datasources)){
-    findLogin <- getOpals()
-    if(findLogin$flag == 1){
-      datasources <- findLogin$opals
-    }else{
-      if(findLogin$flag == 0){
-        stop(" Are yout logged in to any server? Please provide a valid opal login object! ", call.=FALSE)
-      }else{
-        message(paste0("More than one list of opal login object were found: '", paste(findLogin$opals,collapse="', '"), "'!"))
-        userInput <- readline("Please enter the name of the login object you want to use: ")
-        datasources <- eval(parse(text=userInput))
-        if(class(datasources[[1]]) != 'opal'){
-          stop("End of process: you failed to enter a valid login object", call.=FALSE)
-        }
-      }
-    }
+    datasources <- findLoginObjects()
   }
   
   if(is.null(x)){

@@ -39,27 +39,27 @@ histogram that merges the single plots.
 \examples{
 {
 
-# load that contains the login details
-data(logindata)
+  # load that contains the login details
+  data(logindata)
 
-# login and assign specific variable(s)
-myvar <- list('LAB_TSC', 'LAB_HDL')
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # login and assign specific variable(s)
+  myvar <- list('LAB_TSC', 'LAB_HDL')
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# Example 1: plot a combined histogram of the variable 'LAB_TSC'  default behaviour
-ds.histogram(x='D$LAB_TSC')
+  # Example 1: plot a combined histogram of the variable 'LAB_TSC'  default behaviour
+  ds.histogram(x='D$LAB_TSC')
 
-# Example 2: Plot the histograms of LAB_TSC separately (one per study)
-ds.histogram(x='D$LAB_TSC', type='split')
+  # Example 2: Plot the histograms of LAB_TSC separately (one per study)
+  ds.histogram(x='D$LAB_TSC', type='split')
 
-# Example 2: plot a combined histogram of the variable 'LAB_HDL'  default behaviour
-ds.histogram(x='D$LAB_HDL')
+  # Example 2: plot a combined histogram of the variable 'LAB_HDL'  default behaviour
+  ds.histogram(x='D$LAB_HDL')
 
-# Example 3: plot the histograms of LAB_HDL separately (one per study)
-ds.histogram(x='D$LAB_HDL', type='split')
+  # Example 3: plot the histograms of LAB_HDL separately (one per study)
+  ds.histogram(x='D$LAB_HDL', type='split')
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }

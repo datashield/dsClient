@@ -17,49 +17,35 @@
 #' @export
 #' @examples {
 #'
-#' # load that contains the login details
-#' data(logindata)
+#'   # load that contains the login details
+#'   data(logindata)
 #'
-#' # login and assign specific variable(s)
-#' myvar <- list('LAB_TSC', 'LAB_HDL')
-#' opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+#'   # login and assign specific variable(s)
+#'   myvar <- list('LAB_TSC', 'LAB_HDL')
+#'   opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 #'
-#' # Example 1: plot a combined histogram of the variable 'LAB_TSC'  default behaviour
-#' ds.histogram(x='D$LAB_TSC')
+#'   # Example 1: plot a combined histogram of the variable 'LAB_TSC'  default behaviour
+#'   ds.histogram(x='D$LAB_TSC')
 #'
-#' # Example 2: Plot the histograms of LAB_TSC separately (one per study)
-#' ds.histogram(x='D$LAB_TSC', type='split')
+#'   # Example 2: Plot the histograms of LAB_TSC separately (one per study)
+#'   ds.histogram(x='D$LAB_TSC', type='split')
 #'
-#' # Example 2: plot a combined histogram of the variable 'LAB_HDL'  default behaviour
-#' ds.histogram(x='D$LAB_HDL')
+#'   # Example 2: plot a combined histogram of the variable 'LAB_HDL'  default behaviour
+#'   ds.histogram(x='D$LAB_HDL')
 #'
-#' # Example 3: plot the histograms of LAB_HDL separately (one per study)
-#' ds.histogram(x='D$LAB_HDL', type='split')
+#'   # Example 3: plot the histograms of LAB_HDL separately (one per study)
+#'   ds.histogram(x='D$LAB_HDL', type='split')
 #' 
-#' # clear the Datashield R sessions and logout
-#' datashield.logout(opals)
+#'   # clear the Datashield R sessions and logout
+#'   datashield.logout(opals)
 #'
 #' }
 #'
 ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
   
-  # if no opal login details were provided look for 'opal' objects in the environment
+  # if no opal login details are provided look for 'opal' objects in the environment
   if(is.null(datasources)){
-    findLogin <- getOpals()
-    if(findLogin$flag == 1){
-      datasources <- findLogin$opals
-    }else{
-      if(findLogin$flag == 0){
-        stop(" Are yout logged in to any server? Please provide a valid opal login object! ", call.=FALSE)
-      }else{
-        message(paste0("More than one list of opal login object were found: '", paste(findLogin$opals,collapse="', '"), "'!"))
-        userInput <- readline("Please enter the name of the login object you want to use: ")
-        datasources <- eval(parse(text=userInput))
-        if(class(datasources[[1]]) != 'opal'){
-          stop("End of process: you failed to enter a valid login object", call.=FALSE)
-        }
-      }
-    }
+    datasources <- findLoginObjects()
   }
   
   if(is.null(x)){
@@ -85,7 +71,6 @@ ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
   
   # the input object must be a numeric or an integer vector
   if(typ != 'integer' & typ != 'numeric'){
-    message(paste0(x, " is of type ", typ, "!"))
     stop("The input object must be an integer or numeric vector.", call.=FALSE)
   }
   
@@ -107,7 +92,7 @@ ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
   for(i in 1: length(datasources)){
     output <- outputs[[i]]
     if(is.null(output)){
-      stop(" Could not find equidistant break points that span all the data points, in stdnames[i]!")
+      stop("Equidistant break points that span all the data points could not be find, in stdnames[i]!")
     }
     hist.objs[[i]] <- output$histobject
     invalidcells[[i]] <- output$invalidcells

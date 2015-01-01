@@ -20,46 +20,33 @@
 #' @author Isaeva, J.; Gaye, A.
 #' @export
 #' @examples {
-#' # load the file that contains the login details
-#' data(logindata)
 #' 
-#' # login and assign the required variables to R
-#' myvar <- list("LAB_TSC","LAB_HDL")
-#' opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+#'   # load the file that contains the login details
+#'   data(logindata)
 #' 
-#' # Example1: generate a combined grid density object (the default behaviour)
-#' ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL')
+#'   # login and assign the required variables to R
+#'   myvar <- list("LAB_TSC","LAB_HDL")
+#'   opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
-#' # Example2: generate a grid density object for each study separately
-#' ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split")
+#'   # Example1: generate a combined grid density object (the default behaviour)
+#'   ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL')
 #' 
-#' # Example3: generate a grid density object where the number of intervals is set to 15, for each study separately
-#' ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split", numints=15)
+#'   # Example2: generate a grid density object for each study separately
+#'   ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split")
 #' 
-#' # clear the Datashield R sessions and logout
-#' datashield.logout(opals)
+#'   # Example3: generate a grid density object where the number of intervals is set to 15, for each study separately
+#'   ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split", numints=15)
+#' 
+#'   # clear the Datashield R sessions and logout
+#'   datashield.logout(opals)
 #' 
 #' }
 #' 
 ds.densityGrid <- function(x=NULL, y=NULL, numints=20, type='combine', datasources=NULL){
   
-  # if no opal login details were provided look for 'opal' objects in the environment
+  # if no opal login details are provided look for 'opal' objects in the environment
   if(is.null(datasources)){
-    findLogin <- getOpals()
-    if(findLogin$flag == 1){
-      datasources <- findLogin$opals
-    }else{
-      if(findLogin$flag == 0){
-        stop(" Are yout logged in to any server? Please provide a valid opal login object! ", call.=FALSE)
-      }else{
-        message(paste0("More than one list of opal login object were found: '", paste(findLogin$opals,collapse="', '"), "'!"))
-        userInput <- readline("Please enter the name of the login object you want to use: ")
-        datasources <- eval(parse(text=userInput))
-        if(class(datasources[[1]]) != 'opal'){
-          stop("End of process: you failed to enter a valid login object", call.=FALSE)
-        }
-      }
-    }
+    datasources <- findLoginObjects()
   }
   
   if(is.null(x)){

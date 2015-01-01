@@ -49,24 +49,25 @@ user).
 }
 \examples{
 {
-# load the file that contains the login details
-data(logindata)
 
-# login and assign the required variables to R
-myvar <- list("LAB_TSC","LAB_HDL")
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # load the file that contains the login details
+  data(logindata)
 
-# Example1: generate a combined grid density object (the default behaviour)
-ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL')
+  # login and assign the required variables to R
+  myvar <- list("LAB_TSC","LAB_HDL")
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# Example2: generate a grid density object for each study separately
-ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split")
+  # Example1: generate a combined grid density object (the default behaviour)
+  ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL')
 
-# Example3: generate a grid density object where the number of intervals is set to 15, for each study separately
-ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split", numints=15)
+  # Example2: generate a grid density object for each study separately
+  ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split")
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # Example3: generate a grid density object where the number of intervals is set to 15, for each study separately
+  ds.densityGrid(x='D$LAB_TSC', y='D$LAB_HDL', type="split", numints=15)
+
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }

@@ -53,26 +53,27 @@ potential disclosure.
 }
 \examples{
 {
-# load the file that contains the login details
-data(logindata)
 
-# login and assign the required variables to R
-myvar <- list("LAB_TSC","LAB_HDL")
-opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # load the file that contains the login details
+  data(logindata)
 
-# Example1: generate a combined (i.e. pooled heatmap plot)
-ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL')
-ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
+  # login and assign the required variables to R
+  myvar <- list("LAB_TSC","LAB_HDL")
+  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# Example2: generate a heatmapplot where each study is plotted seaparately
-ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
-ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
+  # Example1: generate a combined (i.e. pooled heatmap plot)
+  ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL')
+  ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
 
-# Example3: generate a heatmap plot with a less dense drid
-ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
+  # Example2: generate a heatmapplot where each study is plotted seaparately
+  ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
+  ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
 
-# clear the Datashield R sessions and logout
-datashield.logout(opals)
+  # Example3: generate a heatmap plot with a less dense drid
+  ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
+
+  # clear the Datashield R sessions and logout
+  datashield.logout(opals)
 
 }
 }

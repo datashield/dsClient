@@ -23,54 +23,42 @@
 #' @author Isaeva, J.; Gaye, A.
 #' @export
 #' @examples {
-#' # load the file that contains the login details
-#' data(logindata)
 #' 
-#' # login and assign the required variables to R
-#' myvar <- list("LAB_TSC","LAB_HDL")
-#' opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+#'   # load the file that contains the login details
+#'   data(logindata)
 #' 
-#' # Example1: generate a combined (i.e. pooled heatmap plot)
-#' ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL')
-#' ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
+#'   # login and assign the required variables to R
+#'   myvar <- list("LAB_TSC","LAB_HDL")
+#'   opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
-#' # Example2: generate a heatmapplot where each study is plotted seaparately
-#' ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
-#' ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
+#'   # Example1: generate a combined (i.e. pooled heatmap plot)
+#'   ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL')
+#'   ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', show='zoomed')
 #' 
-#' # Example3: generate a heatmap plot with a less dense drid
-#' ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
+#'   # Example2: generate a heatmapplot where each study is plotted seaparately
+#'   ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split')
+#'   ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', show='zoomed')
 #' 
-#' # clear the Datashield R sessions and logout
-#' datashield.logout(opals)
+#'   # Example3: generate a heatmap plot with a less dense drid
+#'   ds.heatmapPlot(x='D$LAB_TSC', y='D$LAB_HDL', type='split', numints=15)
+#' 
+#'   # clear the Datashield R sessions and logout
+#'   datashield.logout(opals)
 #' 
 #' }
 #'
 ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=20, datasources=NULL){
-  # if no opal login details were provided look for 'opal' objects in the environment
+  
+  # if no opal login details are provided look for 'opal' objects in the environment
   if(is.null(datasources)){
-    findLogin <- getOpals()
-    if(findLogin$flag == 1){
-      datasources <- findLogin$opals
-    }else{
-      if(findLogin$flag == 0){
-        stop(" Are yout logged in to any server? Please provide a valid opal login object! ", call.=FALSE)
-      }else{
-        message(paste0("More than one list of opal login object were found: '", paste(findLogin$opals,collapse="', '"), "'!"))
-        userInput <- readline("Please enter the name of the login object you want to use: ")
-        datasources <- eval(parse(text=userInput))
-        if(class(datasources[[1]]) != 'opal'){
-          stop("End of process: you failed to enter a valid login object", call.=FALSE)
-        }
-      }
-    }
+    datasources <- findLoginObjects()
   }
   
   if(is.null(x)){
-    stop("x=NULL. Please provide the names of two numeric vectors!", call.=FALSE)
+    stop("x=NULL. Please provide the names of the 1st numeric vector!", call.=FALSE)
   }
   if(is.null(y)){
-    stop("y=NULL. Please provide the names of two numeric vectors!", call.=FALSE)
+    stop("y=NULL. Please provide the names of the 2nd numeric vector!", call.=FALSE)
   }
   
   # the input variable might be given as column table (i.e. D$object)
