@@ -8,7 +8,9 @@ ds.tTest(x = NULL, y = NULL, type = "combine",
 }
 \arguments{
   \item{x}{a character, the name of a (non-empty) numeric
-  vector of data values.}
+  vector of data values or a formula of the form 'a~b'
+  where 'a' is the name of a continuous variable and 'b'
+  that of a factor variable.}
 
   \item{y}{a character, the name of an optional (non-empty)
   numeric vector of data values.}
@@ -59,6 +61,9 @@ two-sample test. \code{alternative} a character string
 describing the alternative hypothesis \code{method} a
 character string indicating what type of t-test was
 performed
+
+an object of type 'htest' if both x and y are continuous
+and a list otherwise.
 }
 \description{
 Performs one and two sample t-tests on vectors of data.
@@ -69,7 +74,12 @@ Performs one and two sample t-tests on vectors of data.
 Summary statistics are obtained from each of the data sets
 that are located on the distinct computers/servers. And
 then grand means and variances are calculated. Those are
-used for performing t-test.
+used for performing t-test. The funtion allows for the
+calculation of t-test between two continuous variables or
+between a continuous and a factor variable; the latter
+option requires a formula (see parameter \code{dataframe}).
+If a formula is provided all other but 'conf.level=0.95'
+are ignored.
 }
 \examples{
 {
@@ -77,36 +87,38 @@ used for performing t-test.
   # load that contains the login details
   data(logindata)
 
-  # login and assign specific variable(s)
-  myvar <- list("LAB_HDL", "LAB_TSC")
-  opals <- datashield.login(logins=logindata,assign=TRUE,variables=myvar)
+  # login and assign all the variables
+  opals <- datashield.login(logins=logindata,assign=TRUE)
 
   # Example 1: Run a t.test of the pooled data for the variables 'LAB_HDL' and 'LAB_TSC' - default
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC')
 
-  # Example 2: Run a t.test for each study separately for the same variables as above
+  # Example 2: Run a test to compare the mean of a continuous variable across the two categories of a categorical variable
+  s <- ds.tTest(x='D$PM_BMI_CONTINUOUS~D$GENDER')
+
+  # Example 3: Run a t.test for each study separately for the same variables as above
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', type='split')
 
-  # Example 3: Run a paired t.test of the pooled data
+  # Example 4: Run a paired t.test of the pooled data
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE)
 
-  # Example 4: Run a paired t.test for each study separately
+  # Example 5: Run a paired t.test for each study separately
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', paired=TRUE, type='split')
 
-  # Example 5: Run a t.test of the pooled data with different alternatives
+  # Example 6: Run a t.test of the pooled data with different alternatives
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='greater')
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', alternative='less')
 
-  # Example 6: Run a t.test of the pooled data with mu different from zero
+  # Example 7: Run a t.test of the pooled data with mu different from zero
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', mu=-4)
 
-  # Example 7: Run a t.test of the pooled data assuming that variances of variables are equal
+  # Example 8: Run a t.test of the pooled data assuming that variances of variables are equal
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', var.equal=TRUE)
 
-  # Example 8: Run a t.test of the pooled data with 90\% confidence interval
+  # Example 9: Run a t.test of the pooled data with 90\% confidence interval
   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', conf.level=0.90)
 
-  # Example 9: Run a one-sample t.test of the pooled data
+  # Example 10: Run a one-sample t.test of the pooled data
   ds.tTest(x='D$LAB_HDL')
   # the below example should not work, paired t.test is not possible if the 'y' variable is missing
   # ds.tTest(x='D$LAB_HDL', paired=TRUE)
