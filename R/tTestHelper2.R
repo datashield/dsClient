@@ -121,7 +121,7 @@ tTestHelper2 <- function(formula, CI, datasources) {
   }
   
   # if convergence has been obtained, declare final (maximum likelihood) beta vector,
-  # and calculate the corresponding standard errors, z scores and p values
+  # and calculate the corresponding standard errors, t scores and p values
   # (the latter two to be consistent with the output of a standard GLM analysis)
   # then print out final model summary
   if(converge.state){
@@ -131,16 +131,17 @@ tTestHelper2 <- function(formula, CI, datasources) {
     scale.par <- 1
     scale.par <- dev.total / (nsubs.total-length(beta.vect.next))
     
+    t.df <- (nsubs.total-length(beta.vect.next))
     se.vect.final <- sqrt(diag(variance.covariance.matrix.total)) * sqrt(scale.par)
-    z.vect.final<-beta.vect.final/se.vect.final
-    pval.vect.final<-2*pnorm(-abs(z.vect.final))
-    parameter.names<-names(score.vect.total[,1])
-    model.parameters<-cbind(beta.vect.final,se.vect.final,z.vect.final,pval.vect.final)
-    dimnames(model.parameters)<-list(parameter.names,c("Estimate","Std. Error","z-value","p-value"))
+    z.vect.final <- beta.vect.final/se.vect.final
+    pval.vect.final <- 2*pt(q=-abs(z.vect.final),df=t.df)
+    parameter.names <- names(score.vect.total[,1])
+    model.parameters <- cbind(beta.vect.final,se.vect.final,z.vect.final,pval.vect.final)
+    dimnames(model.parameters) <- list(parameter.names,c("Estimate","Std. Error","t-value","p-value"))
     
     if(CI > 0){
       
-      ci.mult <- qnorm(1-(1-CI)/2)
+      ci.mult <- qt(p=(1-(1-CI)/2),df=t.df)
       low.ci.lp <- model.parameters[,1]-ci.mult*model.parameters[,2]
       hi.ci.lp <- model.parameters[,1]+ci.mult*model.parameters[,2]
       estimate.lp <- model.parameters[,1]
@@ -184,10 +185,10 @@ tTestHelper2 <- function(formula, CI, datasources) {
       data.name = paste0(a, " by ", b)
     )
     # print results to screen in a 't.test' way
-    mylabels <- c("z ", "df ", "p.value ", paste0(CI*100, " percent confidence interval"), "sample estimates:\nmeanLabel")
+    mylabels <- c("t ", "df ", "p.value ", paste0(CI*100, " percent confidence interval"), "sample estimates:\nmeanLabel")
     message("GLM to assess difference of statistical means across two categories")
     message(paste0("data: ", a, " by ", b))
-    message(paste0("z = ", round(glmds$coefficients[2,3],4), ", df = ", glmds$df, ", p.value = ", signif(glmds$coefficients[2,4]),4))
+    message(paste0("t = ", round(glmds$coefficients[2,3],4), ", df = ", glmds$df, ", p.value = ", signif(glmds$coefficients[2,4]),4))
     message(paste0(CI*100, " percent confidence interval:"))
     message(signif(output$conf.int),5)
     message(paste0("sample estimates: ", meanLabel))
