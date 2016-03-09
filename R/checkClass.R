@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #' 
 #' @title Checks that an object has the same class in all studies
 #' @description This is an internal function.
