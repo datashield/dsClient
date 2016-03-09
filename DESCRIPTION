@@ -8,3 +8,4 @@ Description: Client-side DataSHIELD functions
 Depends:
     opal,
     fields
+RoxygenNote: 5.0.1
