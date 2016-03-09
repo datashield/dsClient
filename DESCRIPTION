@@ -1,10 +1,10 @@
-Package: dsBaseClient
-Maintainer: <datashield@obiba.org>
-Author: <datashield@obiba.org>
-Version: 4.1.2
+Package: dsClient
+Maintainer: <datashield-research@bristol.ac.uk>
+Author: <datashield-research@bristol.ac.uk>
+Version: 0.0.1
 License: GPL-3
-Title: DataSHIELD base functions for the client site
-Description: DataSHIELD base functions for the client site
+Title: Client-side DataSHIELD functions
+Description: Client-side DataSHIELD functions
 Depends:
     opal,
     fields

@@ -1,4 +1,4 @@
-dsBaseClient
+dsClient
 ============
 
-DataSHIELD client site base functions
+Client-side DataSHIELD functions
