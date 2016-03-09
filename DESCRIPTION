@@ -5,7 +5,8 @@ Version: 0.0.1
 License: GPL-3
 Title: Client-side DataSHIELD functions
 Description: Client-side DataSHIELD functions
-Depends:
-    opal,
-    fields
+Imports:
+    opal
+Suggests:
+    testthat
 RoxygenNote: 5.0.1
