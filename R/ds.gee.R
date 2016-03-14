@@ -34,6 +34,7 @@
 #' @export
 #' @examples {
 #' 
+#'   \dontrun{
 #'   # load the login data file for the correlated data
 #'   data(geeLoginData)
 #'   library(opal)
@@ -53,6 +54,7 @@
 #'   
 #'   # clear the Datashield R sessions and logout
 #'   datashield.logout(opals) 
+#'   }
 #' 
 #' }
 #' 

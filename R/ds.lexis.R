@@ -37,6 +37,7 @@
 #' @export
 #' @examples {
 #' 
+#'   \dontrun{
 #'   # load the file that contains the login details
 #'   data(survivalLoginData)
 #'   library(opal)
@@ -76,6 +77,7 @@
 #'  
 #'   # clear the Datashield R sessions and logout
 #'   datashield.logout(opals) 
+#'   }
 #' }
 #'
 ds.lexis <- function(data=NULL, intervalWidth=NULL, idCol=NULL, entryCol=NULL, exitCol=NULL, statusCol=NULL, variables=NULL, newobj=NULL, datasources=NULL){
