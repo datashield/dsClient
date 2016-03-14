@@ -60,6 +60,7 @@ preferable to indicate the names of the covariates to be included via the argume
 
   # load the file that contains the login details
   data(survivalLoginData)
+  library(opal)
 
   # login and assign all the variables to R
   opals <- datashield.login(logins=survivalLoginData,assign=TRUE)
