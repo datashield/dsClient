@@ -138,7 +138,7 @@ ds.glm <- function(formula=NULL, data=NULL, family=NULL, offset=NULL, weights=NU
  
    cally1 <- call('glmDS1', formula, family, data)
    
-   study.summary <- datashield.aggregate(datasources, cally1)
+   study.summary <- opal::datashield.aggregate(datasources, cally1)
 #  num.par.glm<-study.summary$study1$dimX[2]
    num.par.glm<-study.summary[[1]][[1]][[2]]
 
@@ -168,7 +168,7 @@ ds.glm <- function(formula=NULL, data=NULL, family=NULL, offset=NULL, weights=NU
 #NOW CALL SECOND COMPONENT OF glmDS TO GENERATE SCORE VECTORS AND INFORMATION MATRICES
     cally2 <- call('glmDS2', formula, family, beta.vect=beta.vect.temp, offset, weights, data)
 
-      study.summary <- datashield.aggregate(datasources, cally2)
+      study.summary <- opal::datashield.aggregate(datasources, cally2)
 
       
       .select <- function(l, field) {

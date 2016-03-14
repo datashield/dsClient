@@ -115,7 +115,7 @@ ds.lexis <- function(data=NULL, intervalWidth=NULL, idCol=NULL, entryCol=NULL, e
   
   # call the server side function
   cally <- call("lexisDS", data, intervalWidth, idCol, entryCol, exitCol, statusCol, variables)
-  datashield.assign(datasources, newobj, cally)
+  opal::datashield.assign(datasources, newobj, cally)
   
   # check that the new object has been created if and display a message accordingly
   finalcheck <- isAssigned(datasources, newobj)  

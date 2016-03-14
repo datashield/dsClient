@@ -76,7 +76,7 @@ ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
   
   # get the range from each studyand produce the 'global' range
   cally1 <- paste0("rangeDS(", x,")")
-  ranges <- unique(unlist(datashield.aggregate(datasources, as.symbol(cally1))))
+  ranges <- unique(unlist(opal::datashield.aggregate(datasources, as.symbol(cally1))))
   range.arg <- c(min(ranges,na.rm=TRUE), max(ranges, na.rm=TRUE))
   if(range.arg[1] < 0){ r1 <- range.arg[1] * 1.1 }else{ r1 <- range.arg[1] * 0.9 }
   if(range.arg[2] < 0){ r2 <- range.arg[2] * 0.9 }else{ r2 <- range.arg[2] * 1.1 }
@@ -87,7 +87,7 @@ ds.histogram <- function(x=NULL, type='combine', datasources=NULL){
   cally2 <- paste0('histogramDS(', x, ',', r1, ',', r2, ',', seedval, ')')
   hist.objs <- vector("list", length(datasources))
   invalidcells <- vector("list", length(datasources))
-  outputs <- datashield.aggregate(datasources, as.symbol(cally2))
+  outputs <- opal::datashield.aggregate(datasources, as.symbol(cally2))
   
   for(i in 1: length(datasources)){
     output <- outputs[[i]]

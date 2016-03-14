@@ -87,7 +87,7 @@ ds.cov = function(x=NULL, y=NULL, naAction='pairwise.complete.obs', datasources=
       cally <- paste0("covDS(x=", x, ", y=NULL", ", use='", naAction, "')")
     }
   }
-  results <- datashield.aggregate(datasources, as.symbol(cally))
+  results <- opal::datashield.aggregate(datasources, as.symbol(cally))
   
   for(l in 1:length(stdnames)){
     for(i in 1:2){

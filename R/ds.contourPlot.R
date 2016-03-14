@@ -104,10 +104,10 @@ ds.contourPlot <- function(x=NULL, y=NULL, type='combine', show='all', numints=2
     
     # get the range from each study and produce the 'global' range
     cally <- paste0("rangeDS(", x, ")") 
-    x.ranges <- datashield.aggregate(datasources, as.symbol(cally))
+    x.ranges <- opal::datashield.aggregate(datasources, as.symbol(cally))
     
     cally <- paste0("rangeDS(", y, ")") 
-    y.ranges <- datashield.aggregate(datasources, as.symbol(cally))
+    y.ranges <- opal::datashield.aggregate(datasources, as.symbol(cally))
     
     x.minrs <- c()
     x.maxrs <- c()
@@ -130,7 +130,7 @@ ds.contourPlot <- function(x=NULL, y=NULL, type='combine', show='all', numints=2
     # generate the grid density object to plot
     cally <- paste0("densityGridDS(",x,",",y,",",limits=T,",",x.global.min,",",
                     x.global.max,",",y.global.min,",",y.global.max,",",numints, ")")
-    grid.density.obj <- datashield.aggregate(datasources, as.symbol(cally))
+    grid.density.obj <- opal::datashield.aggregate(datasources, as.symbol(cally))
     
     numcol <- dim(grid.density.obj[[1]])[2]
     
@@ -221,7 +221,7 @@ ds.contourPlot <- function(x=NULL, y=NULL, type='combine', show='all', numints=2
     num_intervals=numints
     cally <- paste0("densityGridDS(",x,",",y,",",'limits=FALSE',",",'x.min=NULL',",",
                     'x.max=NULL',",",'y.min=NULL',",",'y.max=NULL',",",numints=num_intervals, ")")
-    grid.density.obj <- datashield.aggregate(datasources, as.symbol(cally))
+    grid.density.obj <- opal::datashield.aggregate(datasources, as.symbol(cally))
     
     numcol<-dim(grid.density.obj[[1]])[2]
     

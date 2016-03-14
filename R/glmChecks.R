@@ -55,12 +55,12 @@ glmChecks <- function(formula, data, offset, weights, datasources){
         myterms <- unlist(strsplit(elts[i], split='$', fixed=TRUE))
         if(length(myterms) > 1){
           cally <- call("exists", myterms[1])
-          out <- datashield.aggregate(datasources[j], cally)
+          out <- opal::datashield.aggregate(datasources[j], cally)
           if(!(out[[1]])){ 
             stop(paste0("'", myterms[1], "' is not defined in ", stdnames[j], "!"), call.=FALSE)
           }else{
             cally <- paste0("colnames(", myterms[1], ")")
-            clnames <- unlist(datashield.aggregate(datasources[j], as.symbol(cally)))
+            clnames <- unlist(opal::datashield.aggregate(datasources[j], as.symbol(cally)))
             if(!(myterms[2] %in% clnames)){
               stop(paste0("'", myterms[2], "' is not defined in ", stdnames[j], "!"), call.=FALSE)
             }else{
@@ -72,7 +72,7 @@ glmChecks <- function(formula, data, offset, weights, datasources){
         }else{
           if(!(is.null(data))){
             cally <- paste0("colnames(", data, ")")
-            clnames <- unlist(datashield.aggregate(datasources[j], as.symbol(cally)))
+            clnames <- unlist(opal::datashield.aggregate(datasources[j], as.symbol(cally)))
             if(!(elts[i] %in% clnames)){
               dd <- isDefined(datasources, elts[i])
               call0 <- paste0("isNaDS(", elts[i], ")")
@@ -91,7 +91,7 @@ glmChecks <- function(formula, data, offset, weights, datasources){
           }
         }
         # check if variable is not missing at complete
-        out1 <- datashield.aggregate(datasources[j], as.symbol(call0))
+        out1 <- opal::datashield.aggregate(datasources[j], as.symbol(call0))
         if(out1[[1]]){ 
           stop("The variable ", elts[i], " in ", stdnames[j], " is missing at complete (all values are 'NA').", call.=FALSE)
         }
@@ -102,7 +102,7 @@ glmChecks <- function(formula, data, offset, weights, datasources){
           } 
         }
         if(varIdentifier[i] == "weights"){
-          checkres <- unlist(datashield.aggregate(datasources[j], as.symbol(call1)))
+          checkres <- unlist(opal::datashield.aggregate(datasources[j], as.symbol(call1)))
           if(checkres){
             stop(paste0("Negative weights not allowed - check study ", stdnames[j], "!"), call.=FALSE)
           }  
