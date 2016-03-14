@@ -12,7 +12,7 @@
 # Set up
 #
 
-context("dsBaseClient::ds.dsBaseClient")
+context("dsClient::ds.dsClient")
 
 options(datashield.variables=list("PM_BMI_CATEGORICAL"))
 source("setup.R")
@@ -21,7 +21,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.recodeLevels()")
+context("dsClient::ds.recodeLevels()")
 ds.recodeLevels(opals, x='D$PM_BMI_CATEGORICAL', newCategories=c('normal', 'overweight', 'obesity'), newobj='bmi_new')
 levels <- ds.levels(x='bmi_new')
 test_that("new levels", {
@@ -31,7 +31,7 @@ test_that("new levels", {
   expect_equal(levels$sim3, expected)
 })
 
-context("dsBaseClient::ds.recodeLevels() no opals or newobj")
+context("dsClient::ds.recodeLevels() no opals or newobj")
 ds.recodeLevels(x='D$PM_BMI_CATEGORICAL', newCategories=c('normal', 'overweight', 'obesity'))
 levels <- ds.levels(x='PM_BMI_CATEGORICAL_new')
 test_that("new levels auto", {
@@ -41,7 +41,7 @@ test_that("new levels auto", {
   expect_equal(levels$sim3, expected)
 })
 
-context("dsBaseClient::ds.recodeLevels() test errors")
+context("dsClient::ds.recodeLevels() test errors")
 test_that("recodeLevels_erros", {
     expect_error(ds.recodeLevels(), "Please provide a valid numeric of character vector", fixed=TRUE)
     expect_error(ds.levels(), "Please provide the name of the input vector!", fixed=TRUE)

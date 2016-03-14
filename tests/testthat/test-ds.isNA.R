@@ -2,7 +2,7 @@
 # Set up
 #
 
-context("dsBaseClient::ds.isNA")
+context("dsClient::ds.isNA")
 
 options(datashield.variables=list("LAB_HDL"))
 source("setup.R")
@@ -11,7 +11,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.isNA")
+context("dsClient::ds.isNA")
 res <- ds.isNA(x='D$LAB_HDL')
 test_that("isNA", {
     expect_false(res$sim1)
@@ -20,7 +20,7 @@ test_that("isNA", {
 })
 
 
-context("dsBaseClient::ds.isNA() errors")
+context("dsClient::ds.isNA() errors")
 test_that("isNA_errors", {
     expect_error(ds.isNA(), "Please provide the name of the input vector!", fixed=TRUE)
 })

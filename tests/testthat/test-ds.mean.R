@@ -12,7 +12,7 @@
 # Set up
 #
 
-context("dsBaseClient::ds.mean")
+context("dsClient::ds.mean")
 
 options(datashield.variables=list("LAB_TSC"))
 source("setup.R")
@@ -20,7 +20,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.mean(type=combine)")
+context("dsClient::ds.mean(type=combine)")
 
 stat.mean <- ds.mean(x='D$LAB_TSC')
 #print(stat.mean)
@@ -29,7 +29,7 @@ test_that("mean values [combine]", {
   expect_equal(as.numeric(stat.mean), 5.85192485623003, tolerance = .000000000000001)
 })
 
-context("dsBaseClient::ds.mean(type=combine) loose")
+context("dsClient::ds.mean(type=combine) loose")
  ds.assign("D$LAB_TSC", "tsc")
 stat.mean <- ds.mean(x='tsc')
 #print(stat.mean)
@@ -38,7 +38,7 @@ test_that("mean values [combine] loose", {
   expect_equal(as.numeric(stat.mean), 5.85192485623003, tolerance = .000000000000001)
 })
 
-context("dsBaseClient::ds.mean(type=split)")
+context("dsClient::ds.mean(type=split)")
 
 stat.mean <- ds.mean(datasources=opals, x='D$LAB_TSC', type='split')
 #print(stat.mean)
@@ -51,7 +51,7 @@ test_that("mean values [split]", {
   expect_equal(stat.mean$sim3, 5.84630008623168, tolerance = .000000000000001)
 })
 
-context("dsBaseClient::ds.mean() test errors")
+context("dsClient::ds.mean() test errors")
 ds.asCharacter(x='D$LAB_TSC', newobj="not_a_numeric")
 test_that("mean_erros", {
     expect_error(ds.mean(), "Please provide the name of the input vector!", fixed=TRUE)

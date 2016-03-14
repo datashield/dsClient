@@ -2,7 +2,7 @@
 # Set up
 #
 
-context("dsBaseClient::ds.dataframe")
+context("dsClient::ds.dataframe")
 
 options(datashield.variables=list('LAB_TSC','LAB_HDL'))
 source("setup.R")
@@ -11,7 +11,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.dataframe() create a dataframe")
+context("dsClient::ds.dataframe() create a dataframe")
 myvectors <- c('D$LAB_TSC', 'D$LAB_HDL')
 ds.dataframe(x=myvectors)
 res <- ds.ls()
@@ -22,7 +22,7 @@ test_that("dataframe_exists", {
 })
 
 
-context("dsBaseClient::ds.dataframe() errors")
+context("dsClient::ds.dataframe() errors")
 test_that("dataframe_errors", {
     expect_error(ds.dataframe(), "Please provide the name of the list that holds the input vectors!", fixed=TRUE)
 })

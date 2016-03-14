@@ -41,7 +41,7 @@ test_that("rowColCalc_out_exists", {
     expect_true(res$sim3)
 })
 
-context("dsBaseClient::ds.rowColCalc() test errors")
+context("dsClient::ds.rowColCalc() test errors")
 test_that("rowColCalc_errors", {
     expect_error(ds.rowColCalc(), "Please provide the name of a data.frame or matrix!", fixed=TRUE)
     expect_error(ds.rowColCalc(x='D', newobj="rsum_hdl_tsc"), "'operation' = NULL. Please set it to 'rowSums', 'colSums', 'rowMeans' or 'colMeans'", fixed=TRUE)

@@ -12,7 +12,7 @@
 # Set up
 #
 
-context("dsBaseClient::ds.names")
+context("dsClient::ds.names")
 
 options(datashield.variables=list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL", "GENDER"))
 source("setup.R")
@@ -21,7 +21,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.names() test errors")
+context("dsClient::ds.names() test errors")
 ds.asCharacter(x='D$GENDER', newobj="not_a_list")
 test_that("names_erros", {
     expect_error(ds.names(), "Please provide the name of the input list!", fixed=TRUE)
@@ -29,7 +29,7 @@ test_that("names_erros", {
 })
 
 
-context("dsBaseClient::ds.names()")
+context("dsClient::ds.names()")
 
 ds.subsetByClass(datasources=opals, subsets='subclasses', x='D')
 names <- ds.names('subclasses')

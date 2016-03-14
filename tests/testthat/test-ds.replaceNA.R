@@ -1,4 +1,4 @@
-context("dsBaseClient::ds.replaceNA")
+context("dsClient::ds.replaceNA")
 
 options(datashield.variables=list("LAB_HDL"))
 source("setup.R")
@@ -6,7 +6,7 @@ source("setup.R")
 # Tests
 #
 
-context("dsBaseClient::ds.replaceNA")
+context("dsClient::ds.replaceNA")
 meanVals <- ds.mean(x='D$LAB_HDL', type='split')
 ds.replaceNA(x='D$LAB_HDL', forNA=meanVals, newobj='HDL.noNA')
 before <- ds.numNA(x='D$LAB_HDL')
@@ -21,7 +21,7 @@ test_that("replaceNA HDL", {
 })
 
 
-context("dsBaseClient::ds.replaceNA() test errors")
+context("dsClient::ds.replaceNA() test errors")
 test_that("replaceNA_erros", {
     expect_error(ds.replaceNA(), "Please provide the name of a vector!", fixed=TRUE)
     expect_error(ds.numNA(), "Please provide the name of a vector!", fixed=TRUE)
