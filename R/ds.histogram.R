@@ -19,6 +19,7 @@
 #'
 #'   # load that contains the login details
 #'   data(logindata)
+#'   library(opal)
 #'
 #'   # login and assign specific variable(s)
 #'   myvar <- list('LAB_TSC', 'LAB_HDL')

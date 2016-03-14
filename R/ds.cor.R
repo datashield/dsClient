@@ -21,6 +21,7 @@
 #' 
 #'   # load that contains the login details
 #'   data(logindata)
+#'   library(opal)
 #' 
 #'   # login and assign specific variable(s)
 #'   # (by default the assigned dataset is a dataframe named 'D')

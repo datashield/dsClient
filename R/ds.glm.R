@@ -42,6 +42,7 @@
 #' 
 #'  # load the file that contains the login details
 #'  data(glmLoginData)
+#'  library(opal)
 #' 
 #'  # login and assign all the variables to R
 #'  opals <- datashield.login(logins=glmLoginData, assign=TRUE)

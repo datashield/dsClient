@@ -36,6 +36,7 @@
 #' 
 #'   # load the login data file for the correlated data
 #'   data(geeLoginData)
+#'   library(opal)
 #'   
 #'   # login and assign all the stored variables to R
 #'   opals <- datashield.login(logins=geeLoginData,assign=TRUE)
