@@ -55,6 +55,7 @@
 #'   ds.assign(toAssign='D$PM_BMI_CONTINUOUS', newobj='BMI')
 #'   ds.subset(x='BMI', subset='BMI25plus', logicalOperator='>=', threshold=25)
 #' 
+#'   \dontrun{
 #'   # Example 5: subsetting by rows:
 #'   # get the logarithmic values of the variable 'lab_hdl' and generate a subset with 
 #'   # the first 50 observations of that new vector. If the specified number of row is greater
@@ -64,6 +65,7 @@
 #'   ds.subset(x='logHDL', subset='subLAB_HDL', rows=c(1:50))
 #'   # now get a subset of the table 'D' with just the 100 first observations
 #'   ds.subset(x='D', subset='subD5', rows=c(1:100))
+#'   }
 #' 
 #'   # clear the Datashield R sessions and logout
 #'   datashield.logout(opals)

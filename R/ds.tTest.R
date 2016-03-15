@@ -49,8 +49,10 @@
 #'   # Example 1: Run a t.test of the pooled data for the variables 'LAB_HDL' and 'LAB_TSC' - default
 #'   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC')
 #'   
+#'   \dontrun{
 #'   # Example 2: Run a test to compare the mean of a continuous variable across the two categories of a categorical variable
 #'   s <- ds.tTest(x='D$PM_BMI_CONTINUOUS~D$GENDER')
+#'   }
 #'    
 #'   # Example 3: Run a t.test for each study separately for the same variables as above
 #'   ds.tTest(x='D$LAB_HDL', y='D$LAB_TSC', type='split')
