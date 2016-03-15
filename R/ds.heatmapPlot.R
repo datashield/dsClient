@@ -153,7 +153,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
     
     if (show=='all') {
       # plot a combined heatmap
-      image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data")
+      fields::image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data")
     } else if (show=='zoomed') {
       
       # find rows and columns on the edge of the grid density object which consist only of zeros and leave only
@@ -211,7 +211,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
       y.zoomed = y[dummy_left:dummy_right]
       
       # plot a combined heatmap
-      image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data (zoomed)")
+      fields::image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data (zoomed)")
 
     } else
       stop('Function argument "show" has to be either "all" or "zoomed"')
@@ -243,7 +243,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
         z<-grid 
         title <- paste("Heatmap Plot of ", stdnames[i], sep="")
         if (show=='all') {
-          image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main=title)
+          fields::image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main=title)
         } else if (show=='zoomed') {
           
           # find rows and columns on the edge of the grid density object which consist only of zeros and leave only
@@ -302,7 +302,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
           
 
           title <- paste("Heatmap Plot of ", stdnames[i], " (zoomed)",sep="")
-          image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main=title)
+          fields::image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main=title)
           
         } else
           stop('Function argument "show" has to be either "all" or "zoomed"')
@@ -316,7 +316,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
       z <- grid  
       title <- paste("Heatmap Plot of ", stdnames[1], sep="")
       if (show=='all') {
-        image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main=title)
+        fields::image.plot(x,y,z, xlab=x.lab, ylab=y.lab, main=title)
       } else if (show=='zoomed') {
         
         # find rows and columns on the edge of the grid density object which consist only of zeros and leave only
@@ -376,7 +376,7 @@ ds.heatmapPlot <- function(x=NULL, y=NULL, type="combine", show="all", numints=2
         
 
         title <- paste("Heatmap Plot of ", stdnames[1], " (zoomed)",sep="")
-        image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data")
+        fields::image.plot(x.zoomed,y.zoomed,z.zoomed, xlab=x.lab, ylab=y.lab, main="Heatmap Plot of the Pooled Data")
         
       } else
         stop('Function argument "show" has to be either "all" or "zoomed"')
