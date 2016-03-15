@@ -57,6 +57,7 @@ The data must be in a data.frame obejct and the variables must be refer to throu
 \examples{
 {
 
+  \dontrun{
   # load the login data file for the correlated data
   data(geeLoginData)
   library(opal)
@@ -76,6 +77,7 @@ The data must be in a data.frame obejct and the variables must be refer to throu
   
   # clear the Datashield R sessions and logout
   datashield.logout(opals) 
+  }
 
 }
 

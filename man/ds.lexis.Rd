@@ -58,6 +58,7 @@ preferable to indicate the names of the covariates to be included via the argume
 \examples{
 {
 
+  \dontrun{
   # load the file that contains the login details
   data(survivalLoginData)
   library(opal)
@@ -97,6 +98,7 @@ preferable to indicate the names of the covariates to be included via the argume
  
   # clear the Datashield R sessions and logout
   datashield.logout(opals) 
+  }
 }
 
 }
