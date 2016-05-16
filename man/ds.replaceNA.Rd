@@ -4,7 +4,8 @@
 \alias{ds.replaceNA}
 \title{Replaces the missing values in a vector}
 \usage{
-ds.replaceNA(x = NULL, forNA = NULL, newobj = NULL, datasources = NULL)
+ds.replaceNA(x = NULL, forNA = NULL, newobj = NULL, datasources = NULL,
+  indobj = NULL)
 }
 \arguments{
 \item{x}{a character, the name of the vector to process.}
@@ -19,13 +20,18 @@ If no name is specified the default name is the name of the original vector foll
 
 \item{datasources}{a list of opal object(s) obtained after login in to opal servers;
 these objects hold also the data assign to R, as \code{dataframe}, from opal datasources.}
+
+\item{indobj}{a character, the name of the new vector in which indicates where missing values
+have been replaced. If no name is specified the default name is the name of the original vector
+ followed by the suffix .ind' e.g. 'LAB_HDL.ind' if the name of the vector is 'LAB_HDL'}
 }
 \value{
 a new vector or table structure with the same class is stored on the server site.
 }
 \description{
 This function identifies missing values and replaces them by a value or 
-values specified by the analyst.
+values specified by the analyst. It also returns a vector indicating where the missing
+values have been replaced.
 }
 \details{
 This function is used when the analyst prefer or requires complete vectors. 
@@ -33,7 +39,9 @@ It is then possible the specify one value for each missing value by first return
 the number of missing values using the function \code{ds.numNA} but in most cases
 it might be more sensible to replace all missing values by one specific value e.g. 
 replace all missing values in a vector by the mean or median value. Once the missing
-values have been replaced a new vector is created. 
+values have been replaced a new vector is created. To provide a useful result for
+the missing indicator method, an additional vector that indicates where values were replaced
+is also provided.
 NOTE: If the vector is within a table structure such as a data frame the new vector is 
 appended to table structure so that the table hold hold both the vector with and without
 missing values. The latter is, by default, given a different that indicates its 'completeness'.
@@ -63,6 +71,6 @@ missing values. The latter is, by default, given a different that indicates its 
 
 }
 \author{
-Gaye, A.
+Gaye, A., Bishop, T.
 }
 
