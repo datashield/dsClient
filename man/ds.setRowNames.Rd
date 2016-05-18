@@ -33,7 +33,7 @@ object as the input. The number of row names must match the number of rows
 }
 \examples{
 {
-TBC
+#TBC
 
 }
 

@@ -48,7 +48,7 @@ missing values. The latter is, by default, given a different that indicates its 
 }
 \examples{
 {
-
+  \dontrun{ 
   # load that contains the login details
   data(logindata)
   library(opal)
@@ -66,6 +66,7 @@ missing values. The latter is, by default, given a different that indicates its 
 
   # clear the Datashield R sessions and logout
   datashield.logout(opals)
+  }
 
 }
 
