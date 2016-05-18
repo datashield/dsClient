@@ -17,7 +17,7 @@
 #' @export
 #' @examples {
 #' 
-#' TBC
+#' #TBC
 #' }
 #' 
 ds.unique <- function(x=NULL, f=NULL, datasources=NULL, newobj=NULL){

@@ -16,7 +16,7 @@
 #' @author Bishop, T.
 #' @export
 #' @examples {
-#' TBC
+#' #TBC
 #' 
 #' }
 #' 
