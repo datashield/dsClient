@@ -50,7 +50,7 @@ ds.unique <- function(x=NULL, f=NULL, datasources=NULL, newobj=NULL){
   for(i in 1:length(datasources)){
     message(paste0("--Processing ", names(datasources)[i], "..."))
     cally <- paste0("uniqueDS(",x,",c('",paste(f,collapse="','"),"'))")
-    datashield.assign(datasources[i], newobj, as.symbol(cally))
+    opal::datashield.assign(datasources[i], newobj, as.symbol(cally))
     
     # check that the new object has been created and display a message accordingly
     finalcheck <- isAssigned(datasources[i], newobj) 
@@ -58,7 +58,7 @@ ds.unique <- function(x=NULL, f=NULL, datasources=NULL, newobj=NULL){
     # if the input vector is within a table structure append the new vector to that table
     if(!(is.na(inputElts[[1]]))){
       cally <-  paste0("cbind(", inputElts[[1]], ",", newobj, ")")
-      datashield.assign(datasources[i], inputElts[[1]], as.symbol(cally)) 
+      opal::datashield.assign(datasources[i], inputElts[[1]], as.symbol(cally)) 
     }
   }
 }

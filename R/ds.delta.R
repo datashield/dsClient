@@ -47,7 +47,7 @@ ds.delta <- function(input=NULL, id_col=NULL, target_col=NULL, newobj=NULL, data
   for(i in 1:length(datasources)){
     message(paste0("--Calculating delta on ", names(datasources)[i], "..."))
     cally <- paste0("deltaDS(", input,",'",id_col ,"','", target_col,"')")
-    datashield.assign(datasources[i], newobj, as.symbol(cally))
+    opal::datashield.assign(datasources[i], newobj, as.symbol(cally))
     
     # check that the new object has been created and display a message accordingly
     finalcheck <- isAssigned(datasources[i], newobj) 

@@ -72,7 +72,7 @@ ds.rowShift <- function(x=NULL, datasources=NULL, newobj=NULL, shiftLen = 1L){
     
     message(paste0("--Processing ", names(datasources)[i], "..."))
     cally <- paste0("rowShiftDS(", x, paste0(", ",shiftLen), ")")
-    datashield.assign(datasources[i], newobj, as.symbol(cally))
+    opal::datashield.assign(datasources[i], newobj, as.symbol(cally))
     
     # check that the new object has been created and display a message accordingly
     
@@ -83,7 +83,7 @@ ds.rowShift <- function(x=NULL, datasources=NULL, newobj=NULL, shiftLen = 1L){
     if(!(is.na(inputElts[[1]]))){
       
       cally <-  paste0("cbind(", inputElts[[1]], ",", newobj, ")")
-      datashield.assign(datasources[i], inputElts[[1]], as.symbol(cally))
+      opal::datashield.assign(datasources[i], inputElts[[1]], as.symbol(cally))
       
     }
   }

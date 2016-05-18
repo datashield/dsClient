@@ -62,12 +62,12 @@ ds.setRowNames = function(x=NULL, rownames=NULL, newobj=NULL, datasources=NULL) 
     # get the number of rows in the input data frame and the number of row
     # names. If they are not equal, throw an error.
     
-    dims_x <- datashield.aggregate(datasources[i], as.symbol(paste0('dim(', x, ')' )))
+    dims_x <- opal::datashield.aggregate(datasources[i], as.symbol(paste0('dim(', x, ')' )))
     print(dims_x)
     r_x <- dims_x[[1]][1]
     
     cally <- paste0("length(", rownames, ")")
-    r_r <- datashield.aggregate(datasources[i], as.symbol(cally))
+    r_r <- opal::datashield.aggregate(datasources[i], as.symbol(cally))
     
     if(r_x != r_r){
       message("The number of row names must equal the number of rows.")
@@ -84,7 +84,7 @@ ds.setRowNames = function(x=NULL, rownames=NULL, newobj=NULL, datasources=NULL) 
     message(paste0("--Processing ", names(datasources)[i], "..."))
     cally <- paste0("setRowNamesDS(", x, ",", rownames, ")")
     print(cally)
-    datashield.assign(datasources[i], newobj, as.symbol(cally))
+    opal::datashield.assign(datasources[i], newobj, as.symbol(cally))
     
     # check that the new object has been created and display a message accordingly
     finalcheck <- isAssigned(datasources[i], newobj) 
