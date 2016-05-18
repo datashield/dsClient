@@ -30,7 +30,7 @@
 #' @author Gaye, A., Bishop, T.
 #' @export
 #' @examples {
-#' 
+#'   \dontrun{ 
 #'   # load that contains the login details
 #'   data(logindata)
 #'   library(opal)
@@ -48,6 +48,7 @@
 #' 
 #'   # clear the Datashield R sessions and logout
 #'   datashield.logout(opals)
+#'   }
 #' 
 #' }
 #' 
