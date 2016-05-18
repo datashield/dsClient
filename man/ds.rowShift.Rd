@@ -33,7 +33,7 @@ shifts the column up.
 }
 \examples{
 {
-
+  \dontrun{ 
   # load that contains the login details
   data(logindata)
   library(opal)
@@ -49,7 +49,7 @@ shifts the column up.
   
   # clear the Datashield R sessions and logout
   datashield.logout(opals)
-
+  }
 }
 
 }
