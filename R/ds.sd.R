@@ -9,7 +9,7 @@
 #' @param datasources a list of opal object(s) obtained after login in to opal servers;
 #' these objects hold also the data assign to R, as \code{dataframe}, from opal datasources.
 #' @return a a global standard deviation or one standard deviation for each study.
-#' @author Gaye, A.
+#' @author Gaye, A; Scherer, P
 #' @export
 #' @examples {
 #' 
